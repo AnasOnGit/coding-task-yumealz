@@ -5,13 +5,62 @@ generator client {
   provider = "prisma-client-js"
 }
 
+// database setup
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
-model test {
-  id    Int    @id @default(autoincrement())
-  name  String
-  email String
+// Captains model
+model Captains {
+  id           Int      @id @default(autoincrement())
+  name         String
+  email        String   @unique
+  phone_number String   @unique
+  joining_date DateTime
+  status       String
+  created_at   DateTime @default(now())
+  updated_at   DateTime @updatedAt
+}
+
+// Captain Attributes
+model CaptainAttributes {
+  id                   Int      @id @default(autoincrement())
+  captain_id           Int
+  vehicle_type         String
+  vehicle_model        String
+  vehicle_color        String
+  vehicle_plate_number String
+  created_at           DateTime @default(now())
+  updated_at           DateTime @updatedAt
+}
+
+// Captain Statistics
+model CaptainStatistics {
+  id                       Int      @id @default(autoincrement())
+  captain_id               Int
+  total_distance_traveled  Float
+  total_orders_delivered   Int
+  total_orders_canceled    Int
+  total_orders_rejected    Int
+  total_orders_accepted    Int
+  total_rating             Float
+  created_at               DateTime @default(now())
+  updated_at               DateTime @updatedAt
+} 
+
+// Orders model
+model Orders {
+  id                    Int      @id @default(autoincrement())
+  order_number          String   @unique
+  customer_name         String
+  customer_phone_number String
+  customer_longitude    Float
+  customer_latitude     Float
+  order_status          String
+  captain_id            Int
+  delivered_at          DateTime
+  order_at              DateTime
+  created_at            DateTime @default(now())
+  updated_at            DateTime @updatedAt
 }
