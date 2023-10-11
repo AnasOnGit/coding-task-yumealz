@@ -1,76 +1,35 @@
-// import { NextResponse } from 'next/server';
-
 import { PrismaClient } from "@prisma/client";
 import { NextRequest } from "next/server";
 
-export  async function GET(request: NextRequest) {
-    const prisma = new PrismaClient();
-   try{
-    // get all users from test db
-    const users = await prisma.test.findMany();
-    console.log(users);
-    return new Response(JSON.stringify({ users }));
-   }
-    catch(err){
-     console.log(err);
-     return new Response(JSON.stringify({ error: err }));
-    }
-    finally
-    {
-        await prisma.$disconnect();
-    }
-}
+/*
+    This endpoint is for adding dummy data to the database.
+    It is not required for the application to function.
+    We can add a separate endpoint for this in the future.
+*/
 
 export async function POST(request: NextRequest) {
-    const prisma = new PrismaClient();
-    try{
-        // add user to test db
-        const user = await prisma.test.create({
-            data: {
-                email: "test@test.com",
-                name: "test"
-            },
-            
-            
-        })
-        console.log(user);
-  
+  // establish connection to prisma db
+  const prisma = new PrismaClient();
 
-    return new Response(JSON.stringify({ user }));
-    }
-    catch(err){
-        console.log(err);
-        return new Response(JSON.stringify({ error: err }));
-    }
-    finally
-    {
-        await prisma.$disconnect();
-    }
-
-}
-
-export async function PUT(request: NextRequest) {
-    const prisma = new PrismaClient();
-    try{
-        // update user in test db
-        const user = await prisma.test.update({
-            where: {
-                id: 1
-            },
-            data: {
-                email: "update@test.com",
-                name: "update"
-            }
-        })
-        console.log(user);
-        return new Response(JSON.stringify({ user }));
-    }
-    catch(err){
-        console.log(err);
-        return new Response(JSON.stringify({ error: err }));
-    }
-    finally
-    {
-        await prisma.$disconnect();
-    }
+  // getting data from request body and parsing it
+  const body = await request.json();
+  /* 
+  inserting data from the body into the database
+  body also include table name in which data is to be inserted
+  */
+  const data = body.data;
+  const tableName = body.tableName;
+console.log(data)
+  try {
+    const res = await prisma.order.createMany({
+      data: data,
+    });
+    console.log(res);
+    return new Response(JSON.stringify({ success: true }));
+  } catch (err) {
+    console.log(err);
+    return new Response(JSON.stringify({ error: err }));
+  } finally {
+    await prisma.$disconnect();
+  }
 }

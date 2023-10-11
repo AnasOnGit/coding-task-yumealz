@@ -12,13 +12,16 @@ datasource db {
 }
 
 // Captains model
-model Captains {
+model Captain {
   id           Int      @id @default(autoincrement())
   name         String
   email        String   @unique
   phone_number String   @unique
   joining_date DateTime
   status       String
+  captain_statistic CaptainStatistic[]
+  captain_attributes CaptainAttributes[]
+  orders Order[]
   created_at   DateTime @default(now())
   updated_at   DateTime @updatedAt
 }
@@ -26,6 +29,7 @@ model Captains {
 // Captain Attributes
 model CaptainAttributes {
   id                   Int      @id @default(autoincrement())
+  captain Captain @relation(fields: [captain_id], references: [id])
   captain_id           Int
   vehicle_type         String
   vehicle_model        String
@@ -36,8 +40,9 @@ model CaptainAttributes {
 }
 
 // Captain Statistics
-model CaptainStatistics {
+model CaptainStatistic {
   id                       Int      @id @default(autoincrement())
+  captain Captain @relation(fields: [captain_id], references: [id])
   captain_id               Int
   total_distance_traveled  Float
   total_orders_delivered   Int
@@ -50,17 +55,14 @@ model CaptainStatistics {
 } 
 
 // Orders model
-model Orders {
+model Order {
   id                    Int      @id @default(autoincrement())
-  order_number          String   @unique
-  customer_name         String
-  customer_phone_number String
+  customer_id           Int
   customer_longitude    Float
   customer_latitude     Float
-  order_status          String
+  captain Captain @relation(fields: [captain_id], references: [id])
   captain_id            Int
   delivered_at          DateTime
-  order_at              DateTime
   created_at            DateTime @default(now())
   updated_at            DateTime @updatedAt
 }
