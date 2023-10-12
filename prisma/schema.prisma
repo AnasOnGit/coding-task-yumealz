@@ -60,9 +60,9 @@ model Order {
   customer_id           Int
   customer_longitude    Float
   customer_latitude     Float
-  captain Captain @relation(fields: [captain_id], references: [id])
-  captain_id            Int
-  delivered_at          DateTime
+  captain Captain? @relation(fields: [captain_id], references: [id])
+  captain_id            Int?
+  delivered_at          DateTime?
   created_at            DateTime @default(now())
   updated_at            DateTime @updatedAt
 }
