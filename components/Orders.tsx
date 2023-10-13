@@ -28,7 +28,7 @@ interface Props {
 async function Orders({}: Props) {
   // fetch orders function
 const loadOrders = async() => {
-  const order = await fetch('/api/order',{
+  const order = await fetch(process.env.NEXT_PUBLIC_BASE_URL+'/api/order',{
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
