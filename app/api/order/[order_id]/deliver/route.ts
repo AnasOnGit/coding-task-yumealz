@@ -9,7 +9,7 @@ import { NextRequest } from "next/server";
  * This endpoint is for mark an order as delivered.
  * endpoint usage:/api/order/[order_id]/deliver
  */
-export async function POST(
+export async function PUT(
   request: NextRequest,
   { params }: { params: { order_id: string } }
 ) {
@@ -42,7 +42,7 @@ export async function POST(
         }
       );
     }
-    if (order?.delivered_at) {
+    if (order?.delivered) {
       return new Response(
         JSON.stringify({
           message: "Order is already delivered",
@@ -61,6 +61,7 @@ export async function POST(
         id: Number(params.order_id),
       },
       data: {
+        delivered:true,
         delivered_at: new Date(),
       },
     });

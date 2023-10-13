@@ -5,7 +5,7 @@ import { NextRequest } from "next/server";
  * This endpoint is for assigning a captain to a order.
  * endpoint usage:/api/order/[order_id]/assign/[captain_id]
  */
-export async function POST(
+export async function PUT(
   request: NextRequest,
   { params }: { params: { order_id: string; captain_id: string } }
 ) {

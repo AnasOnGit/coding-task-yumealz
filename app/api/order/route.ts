@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { NextRequest } from "next/server";
-
+// TODO:: UPDATE: commets for order by and sort up
 /**
  * This endpoint is for getting all orders from database with pagination.
  * endpoint usage:/api/order?page=1&limit=10&order_by=created_at&sort_by=desc
@@ -12,8 +12,9 @@ export async function GET(request : NextRequest) {
   const DEFAULT_PAGE = 1;
   const DEFAULT_LIMIT = 10;
   // default for order_by and sort_by is set to created_at and desc because we want to show latest orders first
-  const DEFAULT_ORDER_BY = 'created_at';
-  const DEFAULT_SORT_BY = 'desc';
+  const DEFAULT_ORDER_BY = 'delivered';
+
+  const DEFAULT_SORT_BY = 'asc';
  
   /**
    * Using URLSearchParams to get query params from url
@@ -42,9 +43,31 @@ export async function GET(request : NextRequest) {
       {
         skip: offset,
         take: limit,
-        orderBy: {
-          [orderBy]: sortBy,
-        }
+        include:{
+          captain:true,
+          customer:true,
+        },
+        /**
+         * TODO::Implement query parameter to add more than one sorting options
+         * now second option is hardcoded.
+         * Goal is to first show order which doesn't have any captain assign
+         * than show, order that are not delivered yet, than finally show
+         * latest delivered orders.
+         */
+        orderBy: [
+          {
+            captain_id:{
+              nulls:"first",
+              sort:"asc"
+            }
+          },
+          {
+            delivered: 'asc',
+        },
+        // {
+        //   id:'desc'
+        // }
+      ]
       }
     
     );
@@ -69,6 +92,7 @@ export async function GET(request : NextRequest) {
       hasNextPage,
       hasPreviousPage,
       totalResultsFound,
+      currentPage:page,
       data:queryResult, success: true }),{
         status:200
       });

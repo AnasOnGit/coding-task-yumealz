@@ -23,9 +23,9 @@ export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const page = Number(searchParams.get("page") ?? DEFAULT_PAGE);
   const limit = Number(searchParams.get("limit") ?? DEFAULT_LIMIT);
+  const noLimit = searchParams.get("no_limit") === "true" ? true : false;
   const orderBy = searchParams.get("order_by") ?? DEFAULT_ORDER_BY;
   const sortBy = searchParams.get("sort_by") ?? DEFAULT_SORT_BY;
-
   /**
    * Calculating offset for pagination, offset is used to skip
    * It is calculated by (page - 1) * limit.
@@ -34,17 +34,38 @@ export async function GET(request: NextRequest) {
    * if we are on page 3 then offset will be 20 and so on.
    */
   const offset = (page - 1) * limit;
+  const options =
+    noLimit === false
+      ? {
+          orderBy: {
+            [orderBy]: sortBy,
+          },
+        }
+      : {
+          skip: offset,
+          take: limit,
+          orderBy: {
+            [orderBy]: sortBy,
+          },
+        };
+
   try {
     // getting total number of rows in the table
     const totalResultsFound = await prisma.captain.count();
     // getting data from database
-    const queryResult = await prisma.captain.findMany({
-      skip: offset,
-      take: limit,
-      orderBy: {
-        [orderBy]: sortBy,
-      },
-    });
+    const queryResult = noLimit
+      ? await prisma.captain.findMany({
+          orderBy: {
+            [orderBy]: sortBy,
+          },
+        })
+      : await prisma.captain.findMany({
+          skip: offset,
+          take: limit,
+          orderBy: {
+            [orderBy]: sortBy,
+          },
+        });
     // calculate if there is next page or not and there is previous page or not
     /**
      * if we are on page 1 and total rows are 10 and limit is 10 then there is no next page

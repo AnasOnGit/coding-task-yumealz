@@ -44,7 +44,7 @@ export async function GET(
         message: "Captain is fetched successfully",
         data: queryResult,
         success: true,
-      })
+      },)
     );
   } catch (err) {
     return new Response(JSON.stringify({ message: err }), {

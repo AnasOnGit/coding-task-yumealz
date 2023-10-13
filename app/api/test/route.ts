@@ -15,13 +15,10 @@ export async function POST(request: NextRequest) {
   const body = await request.json();
   /* 
   inserting data from the body into the database
-  body also include table name in which data is to be inserted
   */
   const data = body.data;
-  const tableName = body.tableName;
-console.log(data)
   try {
-    const res = await prisma.order.createMany({
+    const res = await prisma.captainAttributes.createMany({
       data: data,
     });
     console.log(res);
