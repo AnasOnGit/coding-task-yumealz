@@ -97,6 +97,7 @@ export async function GET(request : NextRequest) {
         status:200
       });
   } catch (err) {
+    console.log(err)
     return new Response(JSON.stringify({ message: err }), {
       status: 500,
     });

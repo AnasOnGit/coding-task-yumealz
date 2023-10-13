@@ -69,6 +69,12 @@ function Orders({ }: Props) {
     const [totalLoaded, setTotalLoaded] = React.useState<number>(0);
     const [totalResults, setTotalResults] = React.useState<number>(0);
     const [hasNextPage, setHasNextPage] = React.useState<boolean>(false);
+ /**
+     * As loading env variable from env file is not working, and is not a good solution,
+     */
+
+    // router
+  const baseUrl = `${window.location.protocol}//${window.location.host}`;
     /**
      * Loading orders here
      */
@@ -79,7 +85,7 @@ function Orders({ }: Props) {
 
     // fetch orders function
     const loadOrders = async (currentPage? :number) => {
-        const order = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/order?page=1&limit=${limit}`, {
+        const order = await fetch(`${baseUrl}/api/order?page=1&limit=${limit}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -97,7 +103,7 @@ function Orders({ }: Props) {
 
     const loadMoreOrders = async () => {
         setBottomLoading(true);
-        const order = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/order?page=${nextPageNumber}&limit=${limit}`, {
+        const order = await fetch(`${baseUrl}/api/order?page=${nextPageNumber}&limit=${limit}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -119,7 +125,7 @@ function Orders({ }: Props) {
         setLoading(true);
         setDisableOtherActions(true)
 
-        const order = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/order/${id}/deliver`, {
+        const order = await fetch(`${baseUrl}/api/order/${id}/deliver`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -139,7 +145,7 @@ function Orders({ }: Props) {
     }
     // load captain
     const loadCaptainName = async () => {
-        const captain = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/captain?no_limit=true&sort_by=asc&order_by=name`, {
+        const captain = await fetch(`${baseUrl}/api/captain?no_limit=true&sort_by=asc&order_by=name`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -151,7 +157,7 @@ function Orders({ }: Props) {
 
     // assignCaptainToOrder
     const assignCaptainToOrder = async (orderId: number, captainId: string,) => {
-        const assignCaptain = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/order/${orderId}/assign/${captainId}`, {
+        const assignCaptain = await fetch(`${baseUrl}/api/order/${orderId}/assign/${captainId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -215,11 +221,12 @@ function Orders({ }: Props) {
                                     ) : "Not delivered"}</TableCell>
                                     {!order.captain && <TableCell >
                                         <Dialog open={assignCaptainDialogOpen} onOpenChange={setAssignCaptainDialogOpen}>
-                                            <DialogTrigger><Button variant="secondary" className=" bg-yellow-500 hover:bg-yellow-300 text-black "
+                                            <Button  variant="secondary" className=" bg-yellow-500 hover:bg-yellow-300 text-black "
                                                 onClick={() => {
+                                                    setAssignCaptainDialogOpen(true)
                                                     captain.length === 0 && loadCaptainName();
                                                 }}
-                                            >Assign Captain</Button></DialogTrigger>
+                                            >Assign Captain</Button>
                                             <DialogContent>
                                                 <DialogHeader>
                                                     <DialogTitle>Assign a Captain to Order#{order.id}</DialogTitle>
