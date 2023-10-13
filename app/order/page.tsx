@@ -40,7 +40,7 @@ import {
     TooltipProvider,
     TooltipTrigger,
 } from "@/components/ui/tooltip"
-
+import { useRouter } from 'next/router';
 
 // icons
 import { FiSave } from "react-icons/fi"
@@ -74,7 +74,7 @@ function Orders({ }: Props) {
      */
 
     // router
-  const baseUrl = `${window.location.protocol}//${window.location.host}`;
+  const baseUrl = window && `${window.location.protocol}//${window.location.host}`;
     /**
      * Loading orders here
      */
