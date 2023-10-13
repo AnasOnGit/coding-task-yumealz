@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.7](https://github.com/AnasOnGit/coding-task-yumealz/compare/v0.1.6...v0.1.7) (2023-10-13)
+
+
+### Bug Fixes
+
+* Resolve issue with inaccessible API routes without base URL ([d0f5a21](https://github.com/AnasOnGit/coding-task-yumealz/commit/d0f5a2174d8d1afd067c518b6bad743aa085e809))
+
 ### [0.1.6](https://github.com/AnasOnGit/coding-task-yumealz/compare/v0.1.5...v0.1.6) (2023-10-13)
 
 
