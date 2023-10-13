@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.6](https://github.com/AnasOnGit/coding-task-yumealz/compare/v0.1.5...v0.1.6) (2023-10-13)
+
+
+### Features
+
+* Implement UI for orders page and update API ([085e559](https://github.com/AnasOnGit/coding-task-yumealz/commit/085e559fe411de6b78dcbf09f3ce998f73d82413))
+
 ### [0.1.5](https://github.com/AnasOnGit/coding-task-yumealz/compare/v0.1.4...v0.1.5) (2023-10-12)
 
 ### [0.1.4](https://github.com/AnasOnGit/coding-task-yumealz/compare/v0.1.3...v0.1.4) (2023-10-12)
