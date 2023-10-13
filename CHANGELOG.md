@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.8](https://github.com/AnasOnGit/coding-task-yumealz/compare/v0.1.7...v0.1.8) (2023-10-13)
+
+
+### Bug Fixes
+
+* testing a solution, I am facing with api calls in production ([ca46e51](https://github.com/AnasOnGit/coding-task-yumealz/commit/ca46e51a0439942d1125effedbc6e1b73fe95a59))
+
 ### [0.1.7](https://github.com/AnasOnGit/coding-task-yumealz/compare/v0.1.6...v0.1.7) (2023-10-13)
 
 
