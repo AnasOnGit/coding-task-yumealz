@@ -69,22 +69,28 @@ function Orders({ }: Props) {
     const [totalLoaded, setTotalLoaded] = React.useState<number>(0);
     const [totalResults, setTotalResults] = React.useState<number>(0);
     const [hasNextPage, setHasNextPage] = React.useState<boolean>(false);
- /**
-     * As loading env variable from env file is not working, and is not a good solution,
-     */
 
-    // router
-  const baseUrl = window && `${window.location.protocol}//${window.location.host}`;
+    // url
+    const [baseUrl, setBaseUrl] = React.useState<string>("");
+    /**
+        * As loading env variable from env file is not working, and is not a good solution,
+        */
+
+
     /**
      * Loading orders here
      */
     React.useEffect(() => {
+        // router
+        if (typeof window != 'undefined') {
+            setBaseUrl(`${window.location.protocol}//${window.location.host}`);
+        }
         setLoading(true);
         loadOrders();
     }, [])
 
     // fetch orders function
-    const loadOrders = async (currentPage? :number) => {
+    const loadOrders = async (currentPage?: number) => {
         const order = await fetch(`${baseUrl}/api/order?page=1&limit=${limit}`, {
             method: 'GET',
             headers: {
@@ -221,7 +227,7 @@ function Orders({ }: Props) {
                                     ) : "Not delivered"}</TableCell>
                                     {!order.captain && <TableCell >
                                         <Dialog open={assignCaptainDialogOpen} onOpenChange={setAssignCaptainDialogOpen}>
-                                            <Button  variant="secondary" className=" bg-yellow-500 hover:bg-yellow-300 text-black "
+                                            <Button variant="secondary" className=" bg-yellow-500 hover:bg-yellow-300 text-black "
                                                 onClick={() => {
                                                     setAssignCaptainDialogOpen(true)
                                                     captain.length === 0 && loadCaptainName();
@@ -260,7 +266,7 @@ function Orders({ }: Props) {
 
 
                                                     <Button disabled={selectedAssignedCaptain === "" ? true : false}
-                                                    className="text-white"
+                                                        className="text-white"
                                                         onClick={
                                                             async () => {
                                                                 if (selectedAssignedCaptain === "") {
