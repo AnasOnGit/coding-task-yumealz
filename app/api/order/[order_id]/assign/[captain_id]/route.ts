@@ -39,6 +39,21 @@ export async function PUT(
         captain_id: Number(params.captain_id),
       },
     });
+
+  // Updating captain statistic to increase order_accepted by 1
+    const ordersAccepted = await prisma.captainStatistic.updateMany({
+      where: {
+       captain_id: Number(params.captain_id),
+      },
+      data: {
+        total_orders_accepted: {
+          increment: 1,
+        },
+        
+      },
+    });
+
+
     return new Response(
       JSON.stringify({
         message: "Captain is assigned successfully",

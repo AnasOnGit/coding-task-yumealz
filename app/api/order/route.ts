@@ -46,6 +46,7 @@ export async function GET(request : NextRequest) {
         include:{
           captain:true,
           customer:true,
+          item:true,
         },
         /**
          * TODO::Implement query parameter to add more than one sorting options

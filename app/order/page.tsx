@@ -40,10 +40,12 @@ import {
     TooltipProvider,
     TooltipTrigger,
 } from "@/components/ui/tooltip"
-import { useRouter } from 'next/router';
+
 
 // icons
 import { FiSave } from "react-icons/fi"
+import { AiOutlineEye } from 'react-icons/ai';
+import { AssignCaptain, IsDelivered, MarkAsDelivered } from '@/components/OrderActions';
 interface Props {
 
 }
@@ -209,101 +211,34 @@ function Orders({ }: Props) {
                         }
                         {
                             orders?.map((order: any) => (
-                                <TableRow key={order.id}>
-                                    <TableCell className="font-medium">#{order.id}</TableCell>
+                                <TableRow key={order.id} >
+                                    <TableCell className="font-medium"><Link className="underline" href={`/order/${order.id}`}>#{order.id}</Link></TableCell>
                                     <TableCell>{order.customer.name}</TableCell>
                                     <TableCell><Button variant={'link'} ><Link href={`/captain/${order.captain?.id}`}>{order.captain?.name || "-"}</Link></Button></TableCell>
-                                    <TableCell >SAR {order.price}</TableCell>
-                                    <TableCell className={`${!order.delivered ? 'text-yellow-500' : "text-green-500"}`} >{order.delivered ? (
-                                        <TooltipProvider>
-                                            <Tooltip>
-                                                <TooltipTrigger>Delivered</TooltipTrigger>
-                                                <TooltipContent>
-                                                    <p>{new Date(order.delivered_at).toUTCString()}</p>
-                                                </TooltipContent>
-                                            </Tooltip>
-                                        </TooltipProvider>
-
-                                    ) : "Not delivered"}</TableCell>
-                                    {!order.captain && <TableCell >
-                                        <Dialog open={assignCaptainDialogOpen} onOpenChange={setAssignCaptainDialogOpen}>
-                                            <Button variant="secondary" className=" bg-yellow-500 hover:bg-yellow-300 text-black "
-                                                onClick={() => {
-                                                    setAssignCaptainDialogOpen(true)
-                                                    captain.length === 0 && loadCaptainName();
-                                                }}
-                                            >Assign Captain</Button>
-                                            <DialogContent>
-                                                <DialogHeader>
-                                                    <DialogTitle>Assign a Captain to Order#{order.id}</DialogTitle>
-                                                </DialogHeader>
-                                                <DialogDescription className="flex items-center justify-center mt-5">
-                                                    {/* select menu to display captain menu */}
-                                                    <Select onValueChange={
-                                                        (value) => {
-                                                            setSelectedAssignedCaptain(value.toString());
-                                                        }
-                                                    }>
-                                                        <SelectTrigger className="w-[180px]">
-                                                            <SelectValue placeholder="Select Captain" />
-                                                        </SelectTrigger>
-                                                        <SelectContent className="overflow-y-auto max-h-[10rem]">
-                                                            {
-                                                                captain.length === 0 && <SelectItem value="Loading..." disabled={true}>Loading...</SelectItem>
-                                                            }
-                                                            {
-                                                                captain?.data?.map((captain: any) => (
-                                                                    <SelectItem key={captain.id} value={captain?.id?.toString()}>{captain?.name} </SelectItem>
-                                                                ))
-                                                            }
-
-
-                                                        </SelectContent>
-                                                    </Select>
-
-                                                </DialogDescription>
-                                                <DialogFooter>
-
-
-                                                    <Button disabled={selectedAssignedCaptain === "" ? true : false}
-                                                        className="text-white"
-                                                        onClick={
-                                                            async () => {
-                                                                if (selectedAssignedCaptain === "") {
-
-                                                                } else {
-                                                                    setAssignLoading(true)
-                                                                    await assignCaptainToOrder(order.id, selectedAssignedCaptain)
-                                                                    setAssignCaptainDialogOpen(false)
-                                                                    setSelectedAssignedCaptain("")
-                                                                    setAssignLoading(false)
-                                                                }
-                                                            }
-                                                        }
-                                                    >
-                                                        {assignLoading ?
-                                                            (<svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-gray-900 inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0
-                                                            3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                                            </svg>
-                                                            )
-                                                            :
-                                                            <FiSave size={15} className="mr-1" />
-
-                                                        }
-                                                        {assignLoading ? "Saving" : "Save"}</Button>
-
-                                                </DialogFooter>
-                                            </DialogContent>
-                                        </Dialog>
-                                    </TableCell>}
-                                    {!order.delivered && order.captain && <TableCell >
-
-                                        <Button variant="link" disabled={disableOtherActions} onClick={() => {
-                                            markAsDelivered(order.id);
-                                        }}>Mark as delivered</Button></TableCell>}
+                                    {/* round to two decime if not add .00 */}
+                                    <TableCell >SAR {
+                                        order.item.price.toFixed(2).toString().includes(".") ?
+                                            order.item.price.toFixed(2) :
+                                            order.item.price.toFixed(2) + ".00"
+                                    }</TableCell>
+                                    <TableCell >
+                                        <IsDelivered delivered={order.delivered} delivered_at={order.delivered_at} />
+                                    </TableCell>
+                                    <TableCell >{!order.captain &&
+                                        <AssignCaptain baseUrl={baseUrl} orderId={order.id}
+                                            reload={loadOrders}
+                                        />
+                                    }
+                                        {!order.delivered && order.captain &&
+                                            <MarkAsDelivered baseUrl={baseUrl} orderId={order?.id} reload={loadOrders}
+                                                loading={loading} setLoading={setLoading}
+                                            />
+                                        }
+                                    </TableCell>
+                                    {/* view detail icon */}
+                                    <TableCell className="text-right flex flex-col justify-center items-center text-[12px] cursor-pointer hover:text-yellow-500" ><Link href={`/order/${order.id}`}><AiOutlineEye size={18} />View</Link></TableCell>
                                 </TableRow>)
+
                             )}
                         {/* these shpuld be in same row, load more button if there are any on left and total result loaded out of load taht will be always disaplayed  on right side */}
                         <TableRow>
@@ -319,7 +254,7 @@ function Orders({ }: Props) {
                                     }
                                 </Button>}
                             </TableCell>
-                            <TableCell colSpan={3} className="text-right">
+                            <TableCell colSpan={4} className="text-right">
                                 <span className="mr-2">{totalLoaded} of {totalResults} results loaded</span>
                             </TableCell>
                         </TableRow>

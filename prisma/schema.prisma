@@ -56,27 +56,40 @@ model CaptainStatistic {
 
 // Customer model
 model Customer {
-  id           Int      @id @default(autoincrement())
-  name         String
-  email        String   @unique
-  phone_number String   @unique
-  orders       Order[]
-  created_at   DateTime @default(now())
-  updated_at   DateTime @updatedAt
+  id                 Int      @id @default(autoincrement())
+  name               String
+  email              String   @unique
+  phone_number       String   @unique
+  customer_longitude Float
+  customer_latitude  Float
+  orders             Order[]
+  created_at         DateTime @default(now())
+  updated_at         DateTime @updatedAt
 }
 
 // Orders model
 model Order {
-  id                 Int       @id @default(autoincrement())
-  price              Float
-  customer           Customer  @relation(fields: [customer_id], references: [id])
-  customer_id        Int
-  customer_longitude Float
-  customer_latitude  Float
-  captain            Captain?  @relation(fields: [captain_id], references: [id])
-  captain_id         Int?
-  delivered         Boolean   @default(false)
-  delivered_at       DateTime?
-  created_at         DateTime  @default(now())
-  updated_at         DateTime  @updatedAt
+  id           Int       @id @default(autoincrement())
+  item         Item?     @relation(fields: [item_id], references: [id])
+  item_id      Int?
+  customer     Customer  @relation(fields: [customer_id], references: [id])
+  customer_id  Int
+  captain      Captain?  @relation(fields: [captain_id], references: [id])
+  captain_id   Int?
+  delivered    Boolean   @default(false)
+  delivered_at DateTime?
+  created_at   DateTime  @default(now())
+  updated_at   DateTime  @updatedAt
+}
+
+// Items model
+model Item {
+  id          Int      @id @default(autoincrement())
+  name        String
+  price       Float
+  description String
+  image       String
+  orders      Order[]
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
 }

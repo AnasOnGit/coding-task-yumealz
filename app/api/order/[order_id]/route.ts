@@ -22,6 +22,8 @@ export async function GET(request : NextRequest,{ params }: { params: { order_id
             },
             include: {
                 captain: true,
+                item: true,
+                customer: true,
             
             },
         }

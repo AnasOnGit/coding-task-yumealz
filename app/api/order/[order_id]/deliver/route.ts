@@ -65,6 +65,22 @@ export async function PUT(
         delivered_at: new Date(),
       },
     });
+    /**
+     * TODO:: Add transaction to update captain statistic like total distance travelled
+     * and more.
+     */
+    // adding one to captain's total delivered orders
+    await prisma.captainStatistic.updateMany({
+      where: {
+        captain_id: Number(order.captain_id),
+      },
+      data: {
+        total_orders_delivered: {
+          increment: 1,
+        },
+      
+      },
+    });
     return new Response(
       JSON.stringify({
         message: "Order is delivered successfully",
