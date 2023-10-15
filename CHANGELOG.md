@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.12](https://github.com/AnasOnGit/coding-task-yumealz/compare/v0.1.11...v0.1.12) (2023-10-15)
+
+
+### Bug Fixes
+
+* 'string | null' is not assignable to parameter of type 'string' ([233a30c](https://github.com/AnasOnGit/coding-task-yumealz/commit/233a30c64e7615122a42d14338f56d817687e5e2))
+
 ### [0.1.11](https://github.com/AnasOnGit/coding-task-yumealz/compare/v0.1.10...v0.1.11) (2023-10-15)
 
 
