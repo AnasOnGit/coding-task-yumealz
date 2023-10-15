@@ -24,9 +24,10 @@ export async function GET(request : NextRequest) {
   const { searchParams } = new URL(request.url)
   const page = Number(searchParams.get('page') ?? DEFAULT_PAGE) ;
   const limit = Number(searchParams.get('limit')?? DEFAULT_LIMIT) ;
-  const orderBy = searchParams.get('order_by') ?? DEFAULT_ORDER_BY;
+  // const orderBy = searchParams.get('order_by') ?? DEFAULT_ORDER_BY;
+  const orderBy = JSON.parse(searchParams.get('order_by') || "{}");
   const sortBy = searchParams.get('sort_by') ?? DEFAULT_SORT_BY ;
-  const where = JSON.parse(searchParams.get('where') || "{}") ;
+  const where = JSON.parse(searchParams.get('where')) ;
 
  /**
   * Calculating offset for pagination, offset is used to skip
@@ -38,7 +39,9 @@ export async function GET(request : NextRequest) {
   const offset = (page - 1) * limit;
   try {
     // getting total number of rows in the table
-    const totalResultsFound = await prisma.order.count();
+    const totalResultsFound = await prisma.order.count(
+      {where:where ? where : {},}
+    );
     // getting data from database
     const queryResult = await prisma.order.findMany(
       {
@@ -49,7 +52,7 @@ export async function GET(request : NextRequest) {
           customer:true,
           item:true,
         },
-        where:where,
+        where:where ? where : {},
         /**
          * TODO::Implement query parameter to add more than one sorting options
          * now second option is hardcoded.
@@ -57,18 +60,7 @@ export async function GET(request : NextRequest) {
          * than show, order that are not delivered yet, than finally show
          * latest delivered orders.
          */
-        orderBy: [
-          {
-            captain_id:{
-              nulls:"first",
-              sort:"asc"
-            }
-          },
-          {
-            delivered: 'asc',
-        },
-  
-      ]
+        orderBy: orderBy
       }
     
     );

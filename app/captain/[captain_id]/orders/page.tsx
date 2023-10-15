@@ -15,8 +15,6 @@ import { Button } from "@/components/ui/button"
 import axios from 'axios'
 import Link from 'next/link'
 
-
-
 // icons
 import { FiSave } from "react-icons/fi"
 import { AiOutlineEye } from 'react-icons/ai';
@@ -24,21 +22,21 @@ import { OrdersTable } from '@/components/OrderActions';
 
 
 interface Props {
-
+    params:{
+        id:string
+    }
 }
 
 
 
-function Orders({ }: Props) {
-   
-
+function Orders({ params }: Props) {
 
     return (
         <Container >
 
             <div className="w-[80%] m-auto">
                 <OrdersTable
-                // specificCaptainId={1}
+                specificCaptainId={Number(params.captain_id)}
                 />
             </div>
         </Container>

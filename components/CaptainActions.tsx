@@ -155,11 +155,15 @@ export const CaptainTable = ({ captain, rating,
                 </TableRow>
                 <TableRow>
                     <TableHead>Delivered Orders</TableHead>
-                    <TableCell>{delivered} <Link className="text-blue-600 hover:text-blue-400 hover:underline" href={`/captain/${captain.id}/delivered`}>(View All Orders)</Link></TableCell>
+                    <TableCell>{delivered} </TableCell>
                 </TableRow>
                 <TableRow>
                     <TableHead>Canceled Orders</TableHead>
                     <TableCell>{canceled}</TableCell>
+                </TableRow>
+                <TableRow>
+                    
+                    <TableCell colspan={2} className="text-center"><Link className="text-yellow-600 hover:text-yellow-400 hover:underline" href={`/captain/${captain.id}/orders`}>View All Orders</Link></TableCell>
                 </TableRow>
                 <TableRow>
                     <TableHead>Distance Traveled</TableHead>
@@ -362,3 +366,4 @@ const assignOrders = async() => {
         </Dialog>
     )
 }
+

@@ -154,7 +154,7 @@ function OrderPage({ params }: Props) {
                         </TableRow>
                         <TableRow className="border">
                             <TableHead>Captain Name</TableHead>
-                            <TableCell className={`${!order?.captain && "text-red-500"}`}> <Link className="text-blue-600 hover:text-blue-400" href={`/captain/${order?.captain_id}`}>{order?.captain ? order?.captain.name : "Captain not assigned"}</Link></TableCell>
+                            <TableCell className={`${!order?.captain && "text-red-500"}`}>{order?.captain ?  <Link className="text-blue-600 hover:text-blue-400" href={`/captain/${order?.captain_id}`}>{ order?.captain.name}</Link>: "Captain not assigned"}</TableCell>
                         </TableRow>
                         <TableRow className="border">
                             <TableHead>Customer Longitude </TableHead>
