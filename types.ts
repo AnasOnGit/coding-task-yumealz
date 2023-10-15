@@ -1,5 +1,5 @@
 interface Captain {
-    id: string,
+    id: number,
     name: string,
     phone_number: string,
     vehicle: string,
@@ -12,10 +12,10 @@ interface Captain {
 }
 
 interface Order {
-    id: string,
-    customer_id: string,
-    captain_id: string,
-    item_id: string,
+    id: number,
+    customer_id: number,
+    captain_id: number,
+    item_id: number,
     order_status: string,
     delivered: boolean,
     order_date: Date,
@@ -30,7 +30,7 @@ interface Order {
 }
 
 interface Customer {
-    id: string,
+    id: number,
     name: string,
     phone_number: string,
     address: string,
@@ -38,7 +38,7 @@ interface Customer {
 }
 
 interface Item {
-    id: string,
+    id: number,
     name: string,
     price: number,
     orders: Order[],
@@ -59,7 +59,7 @@ interface CaptainStatistic {
 }
 
 interface CaptainAttribute {
-    id: string,
+    id: number,
     name: string,
     vehicle_type:string,
     vehicle_model:string,

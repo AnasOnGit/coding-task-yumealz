@@ -344,7 +344,7 @@ const assignOrders = async() => {
                                                 <TableCell>
                                                     <Checkbox
                                                     checked={selectedOrders.includes(order.id)}
-                                                        onCheckedChange={(checked:boolean)=>handleCheckbox(checked,order.id)}
+                                                        onCheckedChange={(checked:boolean)=>handleCheckbox(checked,Number(order.id))}
                                                     />
                                                 </TableCell>
                                             </TableRow>
