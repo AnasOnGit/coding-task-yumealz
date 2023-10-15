@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.14](https://github.com/AnasOnGit/coding-task-yumealz/compare/v0.1.13...v0.1.14) (2023-10-15)
+
+
+### Bug Fixes
+
+* incorrect types ([4fe2425](https://github.com/AnasOnGit/coding-task-yumealz/commit/4fe2425ea5970ee29f933fced04d8e19506a5b5c))
+
 ### [0.1.13](https://github.com/AnasOnGit/coding-task-yumealz/compare/v0.1.12...v0.1.13) (2023-10-15)
 
 
