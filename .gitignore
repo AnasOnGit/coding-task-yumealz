@@ -35,4 +35,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-/app/captain/dist
+# ignore all folders called dist
+dist/
