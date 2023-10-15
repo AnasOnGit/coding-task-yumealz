@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.13](https://github.com/AnasOnGit/coding-task-yumealz/compare/v0.1.12...v0.1.13) (2023-10-15)
+
+
+### Bug Fixes
+
+* Add typescript interface for orders and captains states ([f662e1e](https://github.com/AnasOnGit/coding-task-yumealz/commit/f662e1e20348524fcaac54858652ba3a700f1a44))
+
 ### [0.1.12](https://github.com/AnasOnGit/coding-task-yumealz/compare/v0.1.11...v0.1.12) (2023-10-15)
 
 
