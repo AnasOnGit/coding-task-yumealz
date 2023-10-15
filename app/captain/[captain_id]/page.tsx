@@ -18,6 +18,8 @@ import Skeleton from 'react-loading-skeleton'
 import { AssignOrders, CaptainTable } from "@/components/CaptainActions"
 import Link from 'next/link';
 import { IoIosArrowBack } from 'react-icons/io';
+import { Captain } from '@/types';
+
 interface Props {
     params: {
         captain_id: string
@@ -28,7 +30,7 @@ interface Props {
 function CaptainInfo({ params }: Props): ReactElement {
     // states
     const [loading, setLoading] = React.useState<boolean>(true);
-    const [captain, setCaptain] = React.useState<any>([]);
+    const [captain, setCaptain] = React.useState<Captain|null>(null);
     const [baseUrl, setBaseUrl] = React.useState<string>("");
     // useEffect
     React.useEffect(() => {
@@ -49,7 +51,6 @@ function CaptainInfo({ params }: Props): ReactElement {
         });
         const captainJson = await data.json();
         setCaptain(captainJson.data);
-        console.log(captainJson.data)
         setLoading(false);
     }
 
@@ -69,17 +70,17 @@ function CaptainInfo({ params }: Props): ReactElement {
                 {
                    <CaptainTable
                         captain={captain}
-                        name={captain.name}
-                        rating={captain?.captain_statistic && captain?.captain_statistic[0]?.total_rating}
-                        rejected={captain?.captain_statistic && captain?.captain_statistic[0]?.total_orders_rejected}
-                        accepted={captain?.captain_statistic && captain?.captain_statistic[0]?.total_orders_accepted}
-                        delivered={captain?.captain_statistic && captain?.captain_statistic[0]?.total_orders_delivered}
-                        canceled={captain?.captain_statistic && captain?.captain_statistic[0]?.total_orders_canceled}
-                        distanceTraveled={captain?.captain_statistic && captain?.captain_statistic[0]?.total_distance_traveled}
-                        vehicleType={captain?.captain_attributes && captain?.captain_attributes[0]?.vehicle_type}
-                        vehicleModel={captain?.captain_attributes && captain?.captain_attributes[0]?.vehicle_model}
-                        vehicleColor={captain?.captain_attributes && captain?.captain_attributes[0]?.vehicle_color}
-                        vehiclePlate={captain?.captain_attributes && captain?.captain_attributes[0]?.vehicle_plate_number}
+                        name={captain?.name}
+                        rating={captain?.captain_statistic[0]?.total_rating}
+                        rejected={captain?.captain_statistic[0]?.total_orders_rejected}
+                        accepted={captain?.captain_statistic[0]?.total_orders_accepted}
+                        delivered={captain?.captain_statistic[0]?.total_orders_delivered}
+                        canceled={captain?.captain_statistic[0]?.total_orders_canceled}
+                        distanceTraveled={captain?.captain_statistic[0]?.total_distance_traveled}
+                        vehicleType={captain?.captain_attributes[0]?.vehicle_type}
+                        vehicleModel={captain?.captain_attributes[0]?.vehicle_model}
+                        vehicleColor={captain?.captain_attributes[0]?.vehicle_color}
+                        vehiclePlate={captain?.captain_attributes[0]?.vehicle_plate_number}
                     />
                 }
 

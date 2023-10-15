@@ -24,7 +24,9 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
-import Skeleton from "react-loading-skeleton";
+import Skeleton from "react-loading-skeleton"; 
+import 'react-loading-skeleton/dist/skeleton.css'
+
 // import {Skeleton} from "@/components/ui/skeleton";
 
 import { Button } from "./ui/button";
@@ -35,6 +37,7 @@ import React from "react";
 
 // checkbox
 import { Checkbox } from "@/components/ui/checkbox"
+import { Order } from "@/types";
 
 
 // Captain table - Because we need if more than once
@@ -50,21 +53,21 @@ export const CaptainTable = ({ captain, rating,
     vehicleColor,
     vehiclePlate,
 }: {
-    captain: any,
-    rating: number,
-    name: string,
-    rejected: number,
-    accepted: number,
-    delivered: number,
-    canceled: number,
-    distanceTraveled: number,
-    vehicleType: string,
-    vehicleModel: string,
-    vehicleColor: string,
-    vehiclePlate: string
+    captain: any | undefined,
+    rating: number | undefined,
+    name: string | undefined,
+    rejected: number | undefined,
+    accepted: number | undefined,
+    delivered: number | undefined,
+    canceled: number | undefined,
+    distanceTraveled: number | undefined,
+    vehicleType: string | undefined,
+    vehicleModel: string | undefined,
+    vehicleColor: string | undefined,
+    vehiclePlate: string | undefined
 }) => {
     // add loading if captain is empty
-    if (captain.length === 0) {
+    if (!captain) {
         return (
             <Table className={`mt-2 mb-10 border`}>
                 <TableBody>
@@ -130,7 +133,7 @@ export const CaptainTable = ({ captain, rating,
             <TableBody>
                 <TableRow className="border">
                     <TableHead>Captain ID</TableHead>
-                    <TableCell>#{captain?.id}</TableCell>
+                    <TableCell>#{captain?.id} - <Link className="text-blue-600 hover:text-blue-400 hover:underline" href={`/captain/compare?captain_one_id=${captain?.id}`}>Compare Captain Performance</Link></TableCell>
                 </TableRow>
                 <TableRow>
                     <TableHead>Name</TableHead>
@@ -205,7 +208,7 @@ export const AssignOrders = ({ captainId, baseUrl }: {
     // states
     const [dialogTriggerOpen, setDialogTriggerOpen] = React.useState<boolean>(false);
     const [loadingOrders, setLoadingOrders] = React.useState<boolean>(false);
-    const [orderLoaded, setOrderLoaded] = React.useState<any>([]);
+    const [orderLoaded, setOrderLoaded] = React.useState<Order[]|[]>([]);
     const [selectedOrders, setSelectedOrders] = React.useState<any>([]);
     const [assigningOrder,setAssigningOrder] = React.useState<boolean>(false);
     // toast
@@ -218,7 +221,7 @@ if(selectedOrders.length === 0){
         captain_id: null
    
 });
-console.log(where)
+
     setLoadingOrders(true)
     const orders = await fetch(`${baseUrl}/api/order?limit=20&where=${where}`, {
         method: 'GET',
@@ -333,7 +336,7 @@ const assignOrders = async() => {
                                                 <Loading />
                                             </TableCell>
                                             </TableRow>}
-                                        {orderLoaded.map((order: any) => (
+                                        {orderLoaded?.map((order: Order) => (
                                             <TableRow key={order.id}>
                                                 <TableCell>{order.id}</TableCell>
                                                 <TableCell>{order.customer.name}</TableCell>

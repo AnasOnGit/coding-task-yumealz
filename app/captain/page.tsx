@@ -19,16 +19,18 @@ import Skeleton from 'react-loading-skeleton'
 import { CaptainRating } from "@/components/CaptainActions"
 // icons
 import {AiOutlineEye} from "react-icons/ai"
+import { Captain } from '@/types';
 // types
 interface Props {
     
 }
 
+
 function CaptainsPage({}: Props): ReactElement {
 
     const [baseUrl, setBaseUrl] = React.useState<string>("");
     const [loading, setLoading] = React.useState<boolean>(true);
-    const [captains, setCaptains] = React.useState<any>([]);
+    const [captains, setCaptains] = React.useState<Captain[]>([]);
 
     // useEffect
     React.useEffect(() => {
@@ -46,7 +48,6 @@ function CaptainsPage({}: Props): ReactElement {
         });
         const captainsJson = await data.json();
         setCaptains(captainsJson.data);
-        console.log(captainsJson.data)
         setLoading(false);
 
     }
@@ -77,13 +78,7 @@ function CaptainsPage({}: Props): ReactElement {
 
                                 Loading...
                             </TableCell></TableRow>}
-                    {captains.map((captain: {
-                        id: string,
-                        name: string,
-                        phone: string,
-                        vehicle: string,
-                        assigned_orders: number
-                    }) => (
+                    {captains.map((captain) => (
                         <TableRow key={captain.id}>
                             <TableCell className="font-medium"><Link href={`/captain/${captain.id}`} className="text-blue-500 hover:text-blue-300">#{captain.id}</Link></TableCell>
                             <TableCell>{captain?.name}</TableCell>
