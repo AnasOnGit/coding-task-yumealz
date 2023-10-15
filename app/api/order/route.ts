@@ -26,7 +26,7 @@ export async function GET(request : NextRequest) {
   const limit = Number(searchParams.get('limit')?? DEFAULT_LIMIT) ;
   const orderBy = searchParams.get('order_by') ?? DEFAULT_ORDER_BY;
   const sortBy = searchParams.get('sort_by') ?? DEFAULT_SORT_BY ;
-  const where = JSON.parse(searchParams.get('where')) ?? {} ;
+  const where = JSON.parse(searchParams.get('where') || "{}") ;
 
  /**
   * Calculating offset for pagination, offset is used to skip

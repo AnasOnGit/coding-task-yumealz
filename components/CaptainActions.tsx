@@ -24,8 +24,9 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
-// import Skeleton from "react-loading-skeleton";
-import {Skeleton} from "@/components/ui/skeleton";
+import Skeleton from "react-loading-skeleton";
+// import {Skeleton} from "@/components/ui/skeleton";
+
 import { Button } from "./ui/button";
 import { Loading } from "./Loading";
 import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from "./ui/tooltip";
