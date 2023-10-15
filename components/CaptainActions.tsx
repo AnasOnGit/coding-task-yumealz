@@ -336,7 +336,7 @@ const assignOrders = async() => {
                                     </TableHeader>
                                     <TableBody>
                                         {loadingOrders && <TableRow>
-                                            <TableCell className="text-center" S={4}>
+                                            <TableCell className="text-center" colSpan={4}>
                                                 <Loading />
                                             </TableCell>
                                             </TableRow>}
