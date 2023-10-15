@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.11](https://github.com/AnasOnGit/coding-task-yumealz/compare/v0.1.10...v0.1.11) (2023-10-15)
+
+
+### Bug Fixes
+
+* Remove and ignore all dist folders ([45abfcb](https://github.com/AnasOnGit/coding-task-yumealz/commit/45abfcbbb9372b9c426ca3fb27102108de629c59))
+
 ### [0.1.10](https://github.com/AnasOnGit/coding-task-yumealz/compare/v0.1.9...v0.1.10) (2023-10-15)
 
 ### [0.1.9](https://github.com/AnasOnGit/coding-task-yumealz/compare/v0.1.8...v0.1.9) (2023-10-14)
