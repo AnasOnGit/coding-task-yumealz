@@ -27,7 +27,7 @@ export async function GET(request : NextRequest) {
   // const orderBy = searchParams.get('order_by') ?? DEFAULT_ORDER_BY;
   const orderBy = JSON.parse(searchParams.get('order_by') || "{}");
   const sortBy = searchParams.get('sort_by') ?? DEFAULT_SORT_BY ;
-  const where = JSON.parse(searchParams.get('where')) ;
+  const where = JSON.parse(searchParams.get('where') || "{}") ;
 
  /**
   * Calculating offset for pagination, offset is used to skip
@@ -52,7 +52,7 @@ export async function GET(request : NextRequest) {
           customer:true,
           item:true,
         },
-        where:where ? where : {},
+        where:where,
         /**
          * TODO::Implement query parameter to add more than one sorting options
          * now second option is hardcoded.
