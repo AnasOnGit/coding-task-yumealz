@@ -14,32 +14,7 @@ import Container from '@/components/ui/Container'
 import { Button } from "@/components/ui/button"
 import axios from 'axios'
 import Link from 'next/link'
-// dialoag component
-import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogFooter,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-} from "@/components/ui/dialog"
-// select component
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select"
 
-// tooltip
-import {
-    Tooltip,
-    TooltipContent,
-    TooltipProvider,
-    TooltipTrigger,
-} from "@/components/ui/tooltip"
 
 
 // icons
@@ -128,56 +103,6 @@ function Orders({ }: Props) {
     }
 
 
-    // method to mark order as delivered
-    const markAsDelivered = async (id: number) => {
-        setLoading(true);
-        setDisableOtherActions(true)
-
-        const order = await fetch(`${baseUrl}/api/order/${id}/deliver`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                delivered: true
-            })
-        });
-
-        //    if success is true than reload orders
-        if (order.status === 200) {
-            // setOrders([])
-            await loadOrders();
-        }
-        setDisableOtherActions(false);
-
-    }
-    // load captain
-    const loadCaptainName = async () => {
-        const captain = await fetch(`${baseUrl}/api/captain?no_limit=true&sort_by=asc&order_by=name`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        const captainJson = await captain.json();
-        setCaptain(captainJson);
-    }
-
-    // assignCaptainToOrder
-    const assignCaptainToOrder = async (orderId: number, captainId: string,) => {
-        const assignCaptain = await fetch(`${baseUrl}/api/order/${orderId}/assign/${captainId}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        const assignCaptainJson = await assignCaptain.json();
-        // TODO:: If data is saved successfully reload orders
-        if (assignCaptainJson.success) {
-            await loadOrders();
-        }
-        return;
-    }
     return (
         <Container >
 

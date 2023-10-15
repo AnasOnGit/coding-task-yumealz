@@ -5,6 +5,10 @@ import { Cuprum } from 'next/font/google'
 // theme
 import { ThemeProvider } from "@/components/theme-provider"
 import Header from '@/components/Header'
+// toast
+import { Toaster } from "@/components/ui/toaster"
+
+
 
 
 const cuprum = Cuprum({ subsets: ['latin'] })
@@ -23,12 +27,14 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning={true}>
       <body className={cuprum.className}><ThemeProvider
         attribute="class"
-        defaultTheme="system"
+        defaultTheme="dark"
         enableSystem
         disableTransitionOnChange
       >
         <Header/>
         {children}
+        <Toaster />
+
       </ThemeProvider></body>
     </html>
   )

@@ -58,6 +58,15 @@ export async function GET(request: NextRequest) {
           orderBy: {
             [orderBy]: sortBy,
           },
+          include:{
+            captain_attributes:true,
+            captain_statistic:true,
+            _count:{
+              select:{
+                orders:true
+              }
+            }
+          }
         })
       : await prisma.captain.findMany({
           skip: offset,
@@ -65,6 +74,11 @@ export async function GET(request: NextRequest) {
           orderBy: {
             [orderBy]: sortBy,
           },
+          include:{
+            captain_attributes:true,
+            captain_statistic:true,
+            
+          }
         });
     // calculate if there is next page or not and there is previous page or not
     /**
