@@ -23,7 +23,7 @@ import { OrdersTable } from '@/components/OrderActions';
 
 interface Props {
     params:{
-        id:string
+        captain_id:string
     }
 }
 

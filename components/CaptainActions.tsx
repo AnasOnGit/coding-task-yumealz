@@ -163,7 +163,7 @@ export const CaptainTable = ({ captain, rating,
                 </TableRow>
                 <TableRow>
                     
-                    <TableCell colspan={2} className="text-center"><Link className="text-yellow-600 hover:text-yellow-400 hover:underline" href={`/captain/${captain.id}/orders`}>View All Orders</Link></TableCell>
+                    <TableCell colSpan={2} className="text-center"><Link className="text-yellow-600 hover:text-yellow-400 hover:underline" href={`/captain/${captain.id}/orders`}>View All Orders</Link></TableCell>
                 </TableRow>
                 <TableRow>
                     <TableHead>Distance Traveled</TableHead>
@@ -336,7 +336,7 @@ const assignOrders = async() => {
                                     </TableHeader>
                                     <TableBody>
                                         {loadingOrders && <TableRow>
-                                            <TableCell className="text-center" colSpan={4}>
+                                            <TableCell className="text-center" S={4}>
                                                 <Loading />
                                             </TableCell>
                                             </TableRow>}
