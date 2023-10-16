@@ -82,7 +82,7 @@ function CaptainsPage({}: Props): ReactElement {
                         <TableRow key={captain.id}>
                             <TableCell className="font-medium"><Link href={`/captain/${captain.id}`} className="text-blue-500 hover:text-blue-300">#{captain.id}</Link></TableCell>
                             <TableCell>{captain?.name}</TableCell>
-                            <TableCell>{captain?.phone_number}</TableCell>
+                            <TableCell >{captain?.captain_statistic[0]?.total_orders_delivered}</TableCell>
                             
                             <TableCell 
                             >

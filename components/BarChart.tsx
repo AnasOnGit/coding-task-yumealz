@@ -16,7 +16,7 @@ const BarCart = ({labels,label,data,
   return (
     
       <ChartDisplay type={chartType}
-
+    
         data={{
           labels: labels,
           datasets: [{
@@ -25,11 +25,11 @@ const BarCart = ({labels,label,data,
             backgroundColor: [
               'green',
               'orange',
-            //   'rgba(255, 205, 86, 0.2)',
-            //   'rgba(75, 192, 192, 0.2)',
-            //   'rgba(54, 162, 235, 0.2)',
-
             ],
+            borderColor:
+            [
+              chartType === "line" ? "#1e1e1e" : "#ffffff",
+            ]
           },],
 
         }

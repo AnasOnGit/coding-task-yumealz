@@ -17,12 +17,11 @@ export async function POST(request: NextRequest) {
   inserting data from the body into the database
   */
   const data = body.data;
-  console.log(data)
+
   try {
     const res = await prisma.order.createMany({
       data: data,
     });
-    console.log(res);
     return new Response(JSON.stringify({ response:res,success: true }));
   } catch (err) {
     console.log(err);

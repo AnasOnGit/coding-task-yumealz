@@ -7,7 +7,7 @@ import { BsFillSunFill, BsFillMoonStarsFill } from "react-icons/bs"
 // Theme
 import { useTheme } from "next-themes"
 import { FiPackage } from 'react-icons/fi';
-import { CiDeliveryTruck } from 'react-icons/ci';
+import { GoPeople } from 'react-icons/go';
 import { Button } from './ui/button'
 
 interface Props {
@@ -33,11 +33,11 @@ function Header({ }: Props): ReactElement {
             <Link href="/">
                 <Image className="cursor-pointer"  quality={100} priority={true} placeholder={"blur"}
                     blurDataURL={"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzIiIGhlaWdodD0iNzIiIHZpZXdCb3g9IjAgMCA3MiA3MiIgZmlsbD0iY3VycmVudENvbG9yIiBzdHJva2U9IiMwMDAwMDAiPjxwYXRoIGQ9Ik0zMiAzMmMwLTUuNzUgNC4yNS0xMC4wNSA4LjU1LTEwLjA1IDQuMjUtNS43NSA4LjU1LTEwLjA1IDguNTUtMTAuMDUgMC00LjI1IDUuNzUtNC4yNSA4LjU1LTEwLjA1IDguNTUtMTAuMDUgMC00LjI1LTUuNzUtNC4yNS04LjU1LTEwLjA1LTguNTUtMTAuMDV6bTAgMGMtNS43NSAwLTEwLjA1IDQuMjUtMTAuMDUgOC41NS0xMC4wNSA0LjI1IDUuNzUgMTAuMDUgOC41NSAxMC4wNSA0LjI1IDAgNS43NSA0LjI1IDEwLjA1IDguNTUgMTAuMDV6bTAgMGMtNS43NSAwLTEwLjA1IDQuMjUtMTAuMDUgOC41NS0xMC4wNSA0LjI1IDUuNzUgMTAuMDUgOC41NSAxMC4wNSA0LjI1IDAgNS43NSA0LjI1IDEwLjA1IDguNTUgMTAuMDV6Ii8+PC9zdmc+"}
-                    src="/logo.png" alt="logo" width="100" height="100" />
+                    src="/logo.png" alt="logo" width="80" height="80" />
             </Link>
             <nav className="hidden md:flex" >
                 <ul className="flex flex-row gap-3">
-                    <li><Link href={"/captain"} className="flex flex-row gap-2 justify-center items-center hover:dark:bg-zinc-800 hover:bg-slate-50 p-2 rounded"><CiDeliveryTruck size={18} /> Captains</Link></li>
+                    <li><Link href={"/captain"} className="flex flex-row gap-2 justify-center items-center hover:dark:bg-zinc-800 hover:bg-slate-50 p-2 rounded"><GoPeople size={18} /> Captains</Link></li>
                     <li ><Link className="flex flex-row gap-2 justify-center items-center hover:dark:bg-zinc-800 hover:bg-slate-50 p-2 rounded" href={"/order"}><FiPackage size={18} />Orders</Link></li>
 
                 </ul>
