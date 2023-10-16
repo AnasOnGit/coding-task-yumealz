@@ -1,7 +1,7 @@
 'use client'
 import React,{ReactElement} from 'react';
-import {  Chart as ChartDisplay,   } from 'react-chartjs-2';
-import { Chart, registerables } from 'chart.js';
+import {  Chart as ChartDisplay   } from 'react-chartjs-2';
+import { Chart, registerables,ChartType  } from 'chart.js';
 
 const BarCart = ({labels,label,data,
   chartType,
@@ -9,13 +9,13 @@ const BarCart = ({labels,label,data,
   labels:string[],
   label:string,
   data:number[],
-  chartType:string
+  chartType:ChartType
 }) => {
   Chart.register(...registerables);
 
   return (
     
-      <ChartDisplay type={chartType}
+      <ChartDisplay type={chartType }
 
         data={{
           labels: labels,
