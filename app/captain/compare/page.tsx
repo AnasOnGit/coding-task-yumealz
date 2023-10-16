@@ -363,7 +363,7 @@ const SelectComponent = ({ captains,
                                             setCaptainData(captain)
                                         }}
                                     >
-                                        {captain?.name}
+                                       id:{captain?.id} | {captain?.name} 
                                     </SelectItem>
                                 )) : (
                                     <SelectItem disabled={true} value="0">

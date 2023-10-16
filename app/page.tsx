@@ -1,4 +1,3 @@
-
 import Container from "@/components/ui/Container"
 // import BarCart from "@/components/BarCart";
 import Link from "next/link"
@@ -23,15 +22,17 @@ export default function Home() {
     <main className="flex min-h-screen flex-col">
       <Container>
         <div className="md:mt-2 md:w-[70%] m-auto ">
+        <div className="flex flex-1 flex-row justify-between items-center">
         <p className="text-2xl font-bold">Yumealz Admin Panel</p>
+        </div>
         <span className="text-md">Select Action</span>
         </div>
         <div className="flex gap-x-4 gap-y-4 flex-wrap md:w-[50%] m-auto my-5 justify-center">
           <LinkCard title="View Orders"  href="/order" icon={"CiDeliveryTruck"}  /> 
           <LinkCard title="View Captains"  href="/captain" icon={"GoPeople"}  /> 
           <LinkCard title="Captain Comparison"  href="/captain/compare" icon={"FcSalesPerformance"}  /> 
-          <LinkCard title="Documentation"  href="https://github.com/AnasOnGit/coding-task-yumeal" icon={"HiOutlineDocumentReport"}  /> 
-          <LinkCard title="Github"  href="https://github.com/AnasOnGit/coding-task-yumeal" icon={"AiOutlineGithub"}  /> 
+          <LinkCard title="Documentation"  href="https://github.com/AnasOnGit/coding-task-yumealz#yumealz-coding-task" icon={"HiOutlineDocumentReport"}  /> 
+          <LinkCard title="Github"  href="https://github.com/AnasOnGit/coding-task-yumealz" icon={"AiOutlineGithub"}  /> 
         </div>
       
       </Container>

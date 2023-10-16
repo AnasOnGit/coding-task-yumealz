@@ -18,7 +18,7 @@ function Footer({}: Props): ReactElement {
            
     
             <Link href="/captain" className="text-blue-400 hover:text-blue-600 hover:underline">Captains</Link>
-            <Link href="https://github.com/AnasOnGit/coding-task-yumeal" className="text-blue-400 hover:text-blue-600 hover:underline">GitHub</Link>
+            <Link href="https://github.com/AnasOnGit/coding-task-yumealz" className="text-blue-400 hover:text-blue-600 hover:underline">GitHub</Link>
            
             </div>
             </div>
