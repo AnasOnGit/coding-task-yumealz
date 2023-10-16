@@ -8,7 +8,7 @@ interface Props {
 function Container({children, className}: Props): ReactElement {
     return (
         <section className={`
-        "flex flex-col w-full h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        "flex flex-col w-full min-h-screen max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
         +
         ${className}
         `}>

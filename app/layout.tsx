@@ -5,6 +5,7 @@ import { Cuprum } from 'next/font/google'
 // theme
 import { ThemeProvider } from "@/components/theme-provider"
 import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 // toast
 import { Toaster } from "@/components/ui/toaster"
 
@@ -34,7 +35,7 @@ export default function RootLayout({
         <Header/>
         {children}
         <Toaster />
-
+      <Footer />
       </ThemeProvider></body>
     </html>
   )

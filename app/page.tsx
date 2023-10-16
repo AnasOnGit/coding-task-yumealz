@@ -26,7 +26,7 @@ export default function Home() {
         <p className="text-2xl font-bold">Yumealz Admin Panel</p>
         <span className="text-md">Select Action</span>
         </div>
-        <div className="flex gap-2 flex-wrap md:w-[50%] m-auto mb-5 justify-center">
+        <div className="flex gap-x-4 gap-y-4 flex-wrap md:w-[50%] m-auto my-5 justify-center">
           <LinkCard title="View Orders"  href="/order" icon={"CiDeliveryTruck"}  /> 
           <LinkCard title="View Captains"  href="/captain" icon={"GoPeople"}  /> 
           <LinkCard title="Captain Comparison"  href="/captain/compare" icon={"FcSalesPerformance"}  /> 

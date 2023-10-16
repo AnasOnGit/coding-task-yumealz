@@ -185,7 +185,9 @@ function ComparePerformance({ }: Props): ReactElement {
                             setCompareData(true)
                         }
                         }
+                        className="relative"
                         disabled={loading || captainOneId === "" || captainTwoId === "" ? true : false}>
+                            {!compareData && captainOneId !== "" && captainTwoId !== "" && <div className="w-4 h-4 bg-yellow-500 absolute -top-2 animate-pulse  -left-1 rounded-full"></div>}
                         Compare
                     </Button>
                 </CardFooter>

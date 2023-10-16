@@ -38,7 +38,6 @@ function Orders({ }: Props) {
 
             <div className="w-[80%] m-auto">
                 <OrdersTable
-                // specificCaptainId={1}
                 />
             </div>
         </Container>

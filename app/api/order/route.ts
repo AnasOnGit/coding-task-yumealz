@@ -42,6 +42,7 @@ export async function GET(request : NextRequest) {
     const totalResultsFound = await prisma.order.count(
       {where:where ? where : {},}
     );
+
     // getting data from database
     const queryResult = await prisma.order.findMany(
       {

@@ -324,7 +324,7 @@ const OrdersTable = ({specificCaptainId}:{
      */
     // adding where clause condition 
     const whereQuery = specificCaptainId ? JSON.stringify({
-    captain_id:1
+    captain_id:specificCaptainId
     }) : "{}";
 
     //    orderby condition
@@ -343,7 +343,7 @@ const OrdersTable = ({specificCaptainId}:{
     // fetch orders function
     const loadOrders = async (currentPage?: number) => {
   
-        // seprating api url to it's own variable to add conditions
+        // separating api url to it's own variable to add conditions
         const apiUrl = specificCaptainId ? `${baseUrl}/api/order?page=1&limit=${limit}&where=${whereQuery}` :`${baseUrl}/api/order?page=1&limit=${limit}&order_by=${orderBy}`;
        
         const order = await fetch(apiUrl, {
@@ -366,8 +366,8 @@ const OrdersTable = ({specificCaptainId}:{
         // loading for show loading at bottom of the pae when loading new records
         setBottomLoading(true);
         // api url
-        const apiUrl = specificCaptainId ? `${baseUrl}/api/order?page=${nextPageNumber}&limit=${limit}&where=${whereQuery}` :`${baseUrl}/api/order?page=1&limit=${limit}&order_by=${orderBy}`;
-
+        const apiUrl = specificCaptainId ? `${baseUrl}/api/order?page=${nextPageNumber}&limit=${limit}&where=${whereQuery}` :`${baseUrl}/api/order?page=${nextPageNumber}&limit=${limit}&order_by=${orderBy}`;
+        console.log(apiUrl)
         const order = await fetch(apiUrl, {
             method: 'GET',
             headers: {
