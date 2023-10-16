@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.20](https://github.com/AnasOnGit/coding-task-yumealz/compare/v0.1.19...v0.1.20) (2023-10-16)
+
+
+### Bug Fixes
+
+* Add type for chartType ([f45b3f6](https://github.com/AnasOnGit/coding-task-yumealz/commit/f45b3f676464b21546fa573866522c0e72c4a020))
+* Add type for chartType ([31b3e9e](https://github.com/AnasOnGit/coding-task-yumealz/commit/31b3e9e4e059b8263b84e4ce5033f674e036071c))
+
 ### [0.1.19](https://github.com/AnasOnGit/coding-task-yumealz/compare/v0.1.18...v0.1.19) (2023-10-16)
 
 
