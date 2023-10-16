@@ -9,13 +9,13 @@ const BarCart = ({labels,label,data,
   labels:string[],
   label:string,
   data:number[],
-  chartType:ChartType
+  chartType:any
 }) => {
   Chart.register(...registerables);
 
   return (
     
-      <ChartDisplay type={chartType }
+      <ChartDisplay type={chartType}
 
         data={{
           labels: labels,
