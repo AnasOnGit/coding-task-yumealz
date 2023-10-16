@@ -129,7 +129,7 @@ function ComparePerformance({ }: Props): ReactElement {
 
     return (
         <Container>
-            <Card className="md:w-[60%] w-[90%] m-auto mt-5">
+            <Card className="md:w-[60%] lg:w-[40%] w-[90%] m-auto mt-5">
                 <CardHeader>
                     <CardTitle className="flex flex-row justify-between">
                         Compare Captain Performance
@@ -196,7 +196,7 @@ function ComparePerformance({ }: Props): ReactElement {
                 compareData && (
                     <>
                         
-                        <section className="my-8 w-[60%] m-auto">
+                        <section className="my-8 md:w-[60%] w-[90%] m-auto">
                         {/* chart options */}
                            <div className="flex flex-row gap-5 justify-center items-center my-5">
                             {/* select chart */}
