@@ -2,6 +2,11 @@
 
 This project is my submission for Yumealz coding task, which includes the following requirements:
 
+## Technologies Used
+
+The project has been developed using Next JS 13, a powerful React-based framework that allows for efficient server-side rendering and seamless integration of backend and frontend components. The API endpoints have been created using Next.js, leveraging its capabilities for handling complex data interactions. The frontend has been implemented with React, ensuring a dynamic and intuitive user interface.
+
+
 ## Requirements
 
 1. The user should be able to view orders.
